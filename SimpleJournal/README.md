@@ -1,0 +1,5 @@
+# DotNetCore
+
+Basic Journal Tryout.
+
+

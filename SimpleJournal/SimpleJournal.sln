@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.26430.6
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleJournal", "SimpleJournal\SimpleJournal.csproj", "{ED0E88BD-07F2-4B4E-8FC9-15E144F6FF01}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{ED0E88BD-07F2-4B4E-8FC9-15E144F6FF01}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ED0E88BD-07F2-4B4E-8FC9-15E144F6FF01}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ED0E88BD-07F2-4B4E-8FC9-15E144F6FF01}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ED0E88BD-07F2-4B4E-8FC9-15E144F6FF01}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
