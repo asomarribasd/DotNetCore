@@ -1,3 +1,5 @@
 *.dll
+*.exe
+*.pdb
 SimpleJournal\SimpleJournal\bin\*
 SimpleJournal\SimpleJournal\obj\*
