@@ -8,6 +8,8 @@ using Microsoft.EntityFrameworkCore;
 using SimpleJournal.Data;
 using SimpleJournal.Models;
 using Microsoft.AspNetCore.Authorization;
+using System.Security.Claims;
+using Microsoft.AspNetCore.Identity;
 
 namespace SimpleJournal.Controllers
 {
@@ -24,7 +26,9 @@ namespace SimpleJournal.Controllers
         // GET: Journal
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Journals.ToListAsync());
+            Claim user = User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier);
+
+            return View(await _context.Journals.Where(x => x.Author == user.Value).ToListAsync());
         }
 
         // GET: Journal/Details/5
@@ -56,8 +60,11 @@ namespace SimpleJournal.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("JournalId,Name,Url,Author")] Journal journal)
+        public async Task<IActionResult> Create([Bind("JournalId,Name,Description")] Journal journal)
         {
+            Claim user = User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier);
+            journal.Author = user.Value;
+
             if (ModelState.IsValid)
             {
                 _context.Add(journal);
@@ -88,7 +95,7 @@ namespace SimpleJournal.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("JournalId,Name,Url,Author")] Journal journal)
+        public async Task<IActionResult> Edit(int id, [Bind("JournalId,Name,Description, Author")] Journal journal)
         {
             if (id != journal.JournalId)
             {
