@@ -1,1 +1,3 @@
 *.dll
+SimpleJournal\SimpleJournal\bin\*
+SimpleJournal\SimpleJournal\obj\*
