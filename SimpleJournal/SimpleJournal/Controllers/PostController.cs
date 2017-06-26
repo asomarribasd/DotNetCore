@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using SimpleJournal.Data;
 using SimpleJournal.Models;
+using System.Security.Claims;
 
 namespace SimpleJournal.Controllers
 {
@@ -22,7 +23,9 @@ namespace SimpleJournal.Controllers
         // GET: Post
         public async Task<IActionResult> Index()
         {
-            var applicationDbContext = _context.Posts.Include(p => p.Journal);
+            Claim user = User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier);
+
+            var applicationDbContext = _context.Posts.Include(p => p.Journal).Where(x => x.Journal.Author == user.Value);
             return View(await applicationDbContext.ToListAsync());
         }
 
@@ -82,7 +85,9 @@ namespace SimpleJournal.Controllers
             {
                 return NotFound();
             }
-            ViewData["JournalId"] = new SelectList(_context.Journals, "JournalId", "Name", post.JournalId);
+            Claim user = User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier);
+
+            ViewData["JournalId"] = new SelectList(_context.Journals.Where(x => x.Author == user.Value), "JournalId", "Name", post.JournalId);
             return View(post);
         }
 
