@@ -1,0 +1,24 @@
+<h1>Simple Sever information Search</h1>
+
+<p>This is a an example made with Angular and .Net Core 3 for data from an IP and server name.</p>
+
+<form #myForm="ngForm" (submit)="templateForm(myForm.value)" novalidate>
+   <div class="custom-control">
+     
+   </div>
+  <label for="server">Name</label>
+     <input type="text" class="form-control-input" id="server" ngModel>
+
+   <div class="custom-control custom-radio">
+      <input id="ipAddress" type="radio" class="custom-control-input" value="IP" name="serverType" ngModel>
+      <label class="custom-control-label" for="ipAddress">Ip Address</label>
+   </div>
+
+   <div class="custom-control custom-radio">
+      <input id="domainName" type="radio" class="custom-control-input" value="DOMAIN" name="serverType" ngModel>
+      <label class="custom-control-label" for="domainName">Domain Name</label>
+   </div>
+  
+<button type="submit" class="btn btn-primary">Request Information</button>
+
+</form>
