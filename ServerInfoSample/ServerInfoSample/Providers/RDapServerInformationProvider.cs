@@ -1,9 +1,10 @@
 ﻿using System;
+
 namespace ServerInfoSample.Providers
 {
-    public class GeoIpServerInformationProvider : ServerInformationProvider
+    public class RDapServerInformationProvider : ServerInformationProvider
     {
-        public GeoIpServerInformationProvider()
+        public RDapServerInformationProvider()
         {
         }
 
@@ -15,3 +16,4 @@ namespace ServerInfoSample.Providers
         }
     }
 }
+

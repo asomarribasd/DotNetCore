@@ -10,5 +10,7 @@ namespace ServerInfoSample.Providers
         }
 
         public abstract ServerInformationProvidersType ProviderType { get; }
+
+        public abstract string GetInformation(String ServerName);
     }
 }

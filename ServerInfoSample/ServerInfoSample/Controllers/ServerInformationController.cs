@@ -4,12 +4,15 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using ServerInfoSample.Helpers;
+using ServerInfoSample.Providers;
 
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace ServerInfoSample.Controllers
 {
-    public class ServerInformation : Controller
+    [ApiController]
+    [Route("[controller]")]
+    public class ServerInformationController : Controller
     {
         // GET: /<controller>/
         public IActionResult Index()
@@ -19,21 +22,26 @@ namespace ServerInfoSample.Controllers
 
         [HttpGet]
         [Route("infoprovider/ippath")]
-        public IActionResult IpServerProviders()
+        public IActionResult InfoServerProviders()
         {
-            return Ok(EnumExtensions.GetValues<IpServerInfoProviders>());
+            return Ok(EnumExtensions.GetValues<ServerInformationProvidersType>());
         }
 
-        [HttpGet]
-        [Route("infoproviders/domainserver")]
-        public IActionResult DomainServerInfoProviders()
+
+        [HttpPost]
+        [Route("")]
+        public async Task<List<ServerInformation>> GetServerInformation(string Name, ServerInformationProvidersType Provider)
         {
-            return Ok(EnumExtensions.GetValues<IpServerInfoProviders>());
+            return new List<ServerInformation>();
         }
 
         [HttpPost]
         [Route("")]
-        public async Task<> 
+        public async Task<List<ServerInformation>> GetServerInformationList(string Name, List<ServerInformationProvidersType> Provider)
+        {
+            return new List<ServerInformation>();
+        }
+
     }
 }
 

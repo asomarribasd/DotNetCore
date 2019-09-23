@@ -1,9 +1,9 @@
 ﻿using System;
 namespace ServerInfoSample.Providers
 {
-    public class GeoIpInformationProviderFactory : InformationProviderFactory
+    public class RDnsInformationProviderFactory : InformationProviderFactory
     {
-        public GeoIpInformationProviderFactory()
+        public RDnsInformationProviderFactory()
         {
         }
 

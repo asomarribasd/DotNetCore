@@ -7,6 +7,6 @@ namespace ServerInfoSample.Providers
         {
         }
 
-        public abstract GetInformationProvider();
+        public abstract ServerInformationProvider GetInformationProvider();
     }
 }

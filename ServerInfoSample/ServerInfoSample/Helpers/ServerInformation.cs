@@ -1,4 +1,5 @@
 ﻿using System;
+using ServerInfoSample.Providers;
 
 namespace ServerInfoSample.Helpers
 {
@@ -10,7 +11,7 @@ namespace ServerInfoSample.Helpers
         }
 
         public string Name { set; get; }
-        public ServerInformationProviders InformationProvider { get; set; }
+        public ServerInformationProvidersType InformationProvider { get; set; }
         public string Information { get; set; }
     }
 }

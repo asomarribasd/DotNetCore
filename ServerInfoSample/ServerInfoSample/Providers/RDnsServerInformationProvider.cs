@@ -1,9 +1,9 @@
 ﻿using System;
 namespace ServerInfoSample.Providers
 {
-    public class GeoIpServerInformationProvider : ServerInformationProvider
+    public class RDnsServerInformationProvider : ServerInformationProvider
     {
-        public GeoIpServerInformationProvider()
+        public RDnsServerInformationProvider()
         {
         }
 
