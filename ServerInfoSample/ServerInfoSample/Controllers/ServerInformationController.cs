@@ -21,7 +21,7 @@ namespace ServerInfoSample.Controllers
         }
 
         [HttpGet]
-        [Route("infoprovider/ippath")]
+        [Route("infoprovider")]
         public IActionResult InfoServerProviders()
         {
             return Ok(EnumExtensions.GetValues<ServerInformationProvidersType>());
@@ -29,18 +29,46 @@ namespace ServerInfoSample.Controllers
 
 
         [HttpPost]
-        [Route("")]
-        public async Task<List<ServerInformation>> GetServerInformation(string Name, ServerInformationProvidersType Provider)
+        [Route("informationlist/{Name}/{Providers}")]
+        public async Task<List<ServerInformation>> ServerInformationList(string Name, List<ServerInformationProvidersType> Providers)
         {
-            return new List<ServerInformation>();
+
+            List<ServerInformation> serversInformation = new List<ServerInformation>();
+            InformationProviderFactory factory = null;
+
+            foreach (ServerInformationProvidersType provider in Providers)
+            {
+                switch (provider)
+                {
+                    case ServerInformationProvidersType.GeoIp:
+                        factory = new GeoIpInformationProviderFactory();
+                        break;
+                    case ServerInformationProvidersType.RDap:
+                        factory = new RDapInformationProviderFactory();
+                        break;
+                    case ServerInformationProvidersType.ReverseDNS:
+                        factory = new RDnsInformationProviderFactory();
+                        break;
+                    case ServerInformationProvidersType.Ping:
+                        factory = new PingInformationProviderFactory();
+                        break;
+                    default:
+                        break;
+                }
+                ServerInformation information = new ServerInformation();
+                ServerInformationProvider informationProvider = factory.GetInformationProvider();
+
+                information.Name = Name;
+                information.InformationProvider = provider;
+                information.Information = await informationProvider.GetInformation(Name);
+
+                serversInformation.Add(information);
+            }
+
+            return serversInformation;
+
         }
 
-        [HttpPost]
-        [Route("")]
-        public async Task<List<ServerInformation>> GetServerInformationList(string Name, List<ServerInformationProvidersType> Provider)
-        {
-            return new List<ServerInformation>();
-        }
 
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 
 namespace ServerInfoSample.Providers
 {
@@ -11,6 +12,6 @@ namespace ServerInfoSample.Providers
 
         public abstract ServerInformationProvidersType ProviderType { get; }
 
-        public abstract string GetInformation(String ServerName);
+        public abstract Task <string> GetInformation(String ServerName);
     }
 }

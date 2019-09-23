@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Threading.Tasks;
+
 namespace ServerInfoSample.Providers
 {
     public class RDnsServerInformationProvider : ServerInformationProvider
@@ -9,9 +11,9 @@ namespace ServerInfoSample.Providers
 
         public override ServerInformationProvidersType ProviderType => throw new NotImplementedException();
 
-        public override string GetInformation(string ServerName)
+        public override Task<string> GetInformation(string ServerName)
         {
-            throw new NotImplementedException();
+            return Task.FromResult("The information method ReverseDns is not implemented yet.");
         }
     }
 }
