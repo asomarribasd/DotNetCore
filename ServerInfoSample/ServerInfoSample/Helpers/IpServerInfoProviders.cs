@@ -3,5 +3,6 @@ namespace ServerInfoSample.Helpers
 {
     public enum IpServerInfoProviders
     {
+
     }
 }

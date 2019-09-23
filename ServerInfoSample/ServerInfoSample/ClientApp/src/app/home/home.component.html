@@ -6,7 +6,7 @@
    <div class="custom-control">
      
    </div>
-  <label for="server">Name</label>
+      <label for="server">Domain Name or IP</label>
      <input type="text" class="form-control-input" id="server" ngModel>
 
    <div class="custom-control custom-radio">
@@ -18,7 +18,15 @@
       <input id="domainName" type="radio" class="custom-control-input" value="DOMAIN" name="serverType" ngModel>
       <label class="custom-control-label" for="domainName">Domain Name</label>
    </div>
-  
+
+  <div>
+    <label for="infoProvider">Information Provider</label>
+    <select formControlName="infoProvider" id="infoProvider">
+    <option *ngFor="let infoProvider of infoProviders; let i = index" [value]="orders[i].value">
+      {{orders[i].name}}
+    </option>
+    </select>
+  </div>
 <button type="submit" class="btn btn-primary">Request Information</button>
 
 </form>

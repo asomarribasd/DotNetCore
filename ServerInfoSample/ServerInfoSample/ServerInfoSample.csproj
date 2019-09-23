@@ -25,6 +25,10 @@
 
   <ItemGroup>
     <Folder Include="Helpers\" />
+    <Folder Include="Providers\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Remove="Helpers\IpServerInfoProviders.cs" />
   </ItemGroup>
   <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">
     <!-- Ensure Node.js is installed -->
