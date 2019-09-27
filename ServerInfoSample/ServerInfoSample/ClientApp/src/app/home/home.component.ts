@@ -1,41 +1,47 @@
-import { Component } from '@angular/core';
-import {FormsModule, FormBuilder, FormGroup } from '@angular/forms';
-import { of } from 'rxjs';
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, FormArray, FormControl } from '@angular/forms';
+import { ServerInformationService } from '../services/ServerInformationService';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
 })
 
-export class HomeComponent {
+export class HomeComponent implements OnInit{
     isSubmitted = false;
-    infoProviders = [];
     form: FormGroup;
+    providersData = [];
+    
 
- constructor(private formBuilder: FormBuilder) {
+  constructor(private formBuilder: FormBuilder, private informationService: ServerInformationService) {
     this.form = this.formBuilder.group({
-      infoProviders: ['']
+        providers: new FormArray([]),
+        server: new FormControl()
     });
 
-    // async orders
-    of(this.getInfoProviders()).subscribe(orders => {
-      this.infoProviders = orders;
-      this.form.controls.orders.patchValue(this.infoProviders[0].value);
-    });
-
-    // synchronous orders
-    // this.orders = this.getOrders();
-    // this.form.controls.orders.patchValue(this.orders[0].id);
+    this.providersData = this.informationService.getInformationProviders();
+    
   }
 
- // submitForm(form: NgForm) {
- //   this.isSubmitted = true;
- //   if(!form.valid) {
- //     return false;
- //   } else {
- //   alert(JSON.stringify(form.value))
- //   }
- // }
+  ngOnInit() {
+    //this.providersData = this.informationService.getInformationProviders();
+      console.log (this.providersData);
+      this.addCheckboxes();
+  }
+
+  private addCheckboxes() {
+    this.providersData.forEach((o, i) => {
+      const control = new FormControl(i === 0); // if first item set to true, else false
+      (this.form.controls.providers as FormArray).push(control);
+    });
+  }
+
+  submit(jsonForm) {
+    const selectedProvidersIds = this.form.value.orders
+      .map((v, i) => v ? this.providersData[i].value : null)
+      .filter(v => v !== null);
+    console.log(selectedProvidersIds);
+  }
 
   getInfoProviders() {
     return [
@@ -46,8 +52,4 @@ export class HomeComponent {
     ];
   }
 
-  /*########### Template Driven Form ###########*/
-  templateForm(value: any) {
-    alert(JSON.stringify(value));
-  }
 }

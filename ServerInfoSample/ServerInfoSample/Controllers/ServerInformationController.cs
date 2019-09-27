@@ -21,15 +21,20 @@ namespace ServerInfoSample.Controllers
         }
 
         [HttpGet]
-        [Route("infoprovider")]
-        public IActionResult InfoServerProviders()
+        public IActionResult InformationServerProviders()
         {
             return Ok(EnumExtensions.GetValues<ServerInformationProvidersType>());
         }
 
+        [HttpPost]
+        [Route("ServerInformation")]
+        public async Task<ServerInformation> ServerInformation(string Name, ServerInformationProvidersType Provider)
+        {
+            return new ServerInformation();
+        }
 
         [HttpPost]
-        [Route("informationlist/{Name}/{Providers}")]
+        [Route("informationlist/{Name}/{Providers?}")]
         public async Task<List<ServerInformation>> ServerInformationList(string Name, List<ServerInformationProvidersType> Providers)
         {
 

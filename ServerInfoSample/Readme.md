@@ -28,24 +28,9 @@ RDAP
 Reverse DNS
 Ping
 
-## Bonus Points:
+## Bonus:
 
 Add additional services (VirusTotal, open ports, website status, domain availability, etc)
 API has a Swagger Spec (if you use REST)
 Support partial results on error or rate limit
-
-## What we are looking for:
-
-How you organize your project
-
-## What tooling you use (nuget, npm, etc.)
-
-Creativity, performance, testing
-Please implement this practical in C#.
-Use this task as a way to show off what kind of developer you are, how you approach problems, how you deal with difficulties and you can come
-up with clever solutions. We do not expect a feature complete, production worthy product (though it would be a bonus). We would be just as
-happy to have you explain your next steps and how you would approach them.
-
-
-
 
