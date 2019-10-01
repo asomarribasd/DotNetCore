@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 using ServerInfoSample.Helpers;
 using ServerInfoSample.Providers;
 
@@ -14,26 +15,38 @@ namespace ServerInfoSample.Controllers
     [Route("[controller]")]
     public class ServerInformationController : Controller
     {
+
+        private readonly ILogger<ServerInformationController> _logger;
+
+        public ServerInformationController(ILogger<ServerInformationController> logger)
+        {
+            _logger = logger;
+        }
+
         // GET: /<controller>/
         public IActionResult Index()
         {
             return View();
         }
 
-        [HttpGet]
+        [HttpGet("InformationProviders")]
         public IActionResult InformationServerProviders()
         {
             return Ok(EnumExtensions.GetValues<ServerInformationProvidersType>());
         }
 
-        [HttpPost]
+        [HttpGet]
         [Route("ServerInformation")]
         public async Task<ServerInformation> ServerInformation(string Name, ServerInformationProvidersType Provider)
         {
+
+
+
+
             return new ServerInformation();
         }
 
-        [HttpPost]
+        [HttpGet]
         [Route("informationlist/{Name}/{Providers?}")]
         public async Task<List<ServerInformation>> ServerInformationList(string Name, List<ServerInformationProvidersType> Providers)
         {
@@ -74,7 +87,7 @@ namespace ServerInfoSample.Controllers
 
         }
 
-
+        
     }
 }
 

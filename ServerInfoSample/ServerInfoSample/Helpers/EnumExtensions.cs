@@ -10,11 +10,11 @@ namespace ServerInfoSample.Helpers
             List<EnumValue> values = new List<EnumValue>();
             foreach (var itemType in Enum.GetValues(typeof(T)))
             {
-                //For each value of this enumeration, add a new EnumValue instance
                 values.Add(new EnumValue()
                 {
-                    Name = Enum.GetName(typeof(T), itemType),
-                    Value = (int)itemType
+                    Id = (int)itemType,
+                    Name = Enum.GetName(typeof(T), itemType)
+                    
                 });
             }
             return values;
